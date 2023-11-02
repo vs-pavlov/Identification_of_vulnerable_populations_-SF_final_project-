@@ -2,7 +2,7 @@ import requests
 
 if __name__ == '__main__':
     # выполняем POST-запрос на сервер по эндпоинту add с параметром json
-    r = requests.post('http://localhost:5000/predict', json=[99,10,10])
+    r = requests.post('http://localhost:80/predict', json=[99,10,10])
     # выводим статус запроса
     print('Status code: {}'.format(r.status_code))
     # реализуем обработку результата

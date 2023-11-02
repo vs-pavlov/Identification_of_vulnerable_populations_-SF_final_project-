@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 import pickle
 import numpy as np
+import pandas as pd
 
 # загружаем модель из файла
-with open('docker/nginx/app/models/pipeline.pkl', 'rb') as pkl_file:
+with open('/app/models/pipeline.pkl', 'rb') as pkl_file:
     model = pickle.load(pkl_file)
 
 
@@ -19,7 +20,7 @@ def index():
 def predict():
     features = request.json
     # using loc methods
-    with open('docker/nginx/app/models/cluster_df.pkl', 'rb') as pkl_file:
+    with open('/app/models/cluster_df.pkl', 'rb') as pkl_file:
         cluster_df = pickle.load(pkl_file)
     cluster_df.iloc[-1] = features
     cluster_df['pred_cluster'] = model.predict(cluster_df)
